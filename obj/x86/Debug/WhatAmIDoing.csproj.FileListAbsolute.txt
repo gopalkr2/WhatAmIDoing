@@ -1,0 +1,12 @@
+H:\Krishna\Sandbox\WhatAmIDoing\WhatAmIDoing\obj\x86\Debug\WhatAmIDoing.csproj.GenerateResource.Cache
+H:\Krishna\Sandbox\WhatAmIDoing\WhatAmIDoing\bin\Debug\WhatAmIDoing.exe
+H:\Krishna\Sandbox\WhatAmIDoing\WhatAmIDoing\bin\Debug\WhatAmIDoing.pdb
+H:\Krishna\Sandbox\WhatAmIDoing\WhatAmIDoing\obj\x86\Debug\WhatAmIDoing.exe
+H:\Krishna\Sandbox\WhatAmIDoing\WhatAmIDoing\obj\x86\Debug\WhatAmIDoing.pdb
+H:\Krishna\Sandbox\WhatAmIDoing\WhatAmIDoing\obj\x86\Debug\WhatAmIDoing.csprojResolveAssemblyReference.cache
+H:\Krishna\Sandbox\WhatAmIDoing\WhatAmIDoing\obj\x86\Debug\WhatAmIDoing.Model.Form1.resources
+H:\Krishna\Sandbox\WhatAmIDoing\WhatAmIDoing\obj\x86\Debug\WhatAmIDoing.Model.Properties.Resources.resources
+H:\Krishna\Sandbox\WhatAmIDoing\WhatAmIDoing\bin\Debug\FileHelpers.dll
+H:\Krishna\Sandbox\WhatAmIDoing\WhatAmIDoing\bin\Debug\FileHelpers.ExcelStorage.dll
+H:\Krishna\Sandbox\WhatAmIDoing\WhatAmIDoing\bin\Debug\FileHelpers.xml
+H:\Krishna\Sandbox\WhatAmIDoing\WhatAmIDoing\bin\Debug\FileHelpers.ExcelStorage.xml

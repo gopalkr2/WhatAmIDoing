@@ -1,0 +1,98 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Win32;
+using System.Threading;
+using System.Runtime.InteropServices;
+using System.Diagnostics;
+
+
+namespace WhatAmIDoing
+{
+   public class WindowsHelper
+    {
+       private static Boolean isSessionLocked = false;
+       private static WindowsSessionTracker session;
+       private static WindowsHelper instance = new WindowsHelper();
+       
+
+       [DllImport("user32.dll")]
+       public static extern IntPtr GetWindowThreadProcessId(IntPtr hWnd, out uint ProcessId);
+
+       [DllImport("user32.dll")]
+       private static extern IntPtr GetForegroundWindow();
+
+       
+       public static WindowsHelper Instance
+       {
+           get{ return instance;}
+
+       }
+
+       private WindowsHelper()
+       {
+           session = new WindowsSessionTracker();
+
+           Thread sessionThread = new Thread(new ThreadStart(session.Run));
+           sessionThread.Start();
+       }
+
+       public static bool IsSessionLocked()
+       {
+           return isSessionLocked;
+       }
+
+
+       public Process GetActiveProcess()
+       {
+           IntPtr hwnd = GetForegroundWindow();
+           uint pid;
+           GetWindowThreadProcessId(hwnd, out pid);
+           Process p = Process.GetProcessById((int)pid);
+           return p;
+       }
+
+       public string GetActiveProcessName()
+       {
+           IntPtr hwnd = GetForegroundWindow();
+           uint pid;
+           GetWindowThreadProcessId(hwnd, out pid);
+           Process p = Process.GetProcessById((int)pid);
+           return p.ProcessName;
+       }
+       
+
+       private class WindowsSessionTracker: IDisposable
+       {
+           private Timer sessionLockTime;
+           private Timer sessionActiveTime;
+
+           private  SessionSwitchEventHandler sessionStateChangedHandler;
+
+           void OnStatusChanged(object sender, SessionSwitchEventArgs e)
+           {
+               switch (e.Reason)
+               {
+                   case SessionSwitchReason.SessionLock: 
+                       isSessionLocked = true; 
+                       break;
+                   case SessionSwitchReason.SessionUnlock: 
+                       isSessionLocked = false; 
+                       break;
+               }
+           }
+
+           public void Run()
+           {
+               sessionStateChangedHandler = new SessionSwitchEventHandler(OnStatusChanged);
+               SystemEvents.SessionSwitch += sessionStateChangedHandler;
+           }
+
+           public void Dispose()
+           {
+               SystemEvents.SessionSwitch -= sessionStateChangedHandler;
+           }
+       }      
+    }
+}
